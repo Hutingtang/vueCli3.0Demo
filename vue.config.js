@@ -1,7 +1,7 @@
 const BASE_URL = process.env.NODE_ENV == "production" ? "/iview-admin" : "/";
 const path = require("path");
 const resolve = dir => {
-  return path.jion(__dirname, dir)
+  return path.join(__dirname, dir)
 }
 module.exports = {
   lintOnSave: false,
