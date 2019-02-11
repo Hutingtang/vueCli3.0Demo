@@ -5,7 +5,7 @@ const resolve = dir => {
 }
 module.exports = {
   lintOnSave: false,
-  baseUrl: BASE_URL, //基础路径
+  publicPath: BASE_URL, //基础路径
   chainWebpack: config => {
     config.resolve.alias
       .set("@", resolve("src"))
