@@ -6,7 +6,6 @@ import actions from './actions'
 import user from './module/user'
 
 Vue.use(Vuex)
-
 export default new Vuex.Store({
   state,
   mutations,
