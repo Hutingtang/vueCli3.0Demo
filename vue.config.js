@@ -16,5 +16,8 @@ module.exports = {
   //连接服务器配置，跨域
   devServer:{
     // proxy:"http://localhost:4000"
+  },
+  configureWebpack: {
+    devtool: 'source-map'
   }
 }
