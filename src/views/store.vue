@@ -9,6 +9,9 @@
     <p>appVersion: {{ appVersion }}</p>
     <button @click="UpdateAppName">修改appName</button>
     <button @click="UpdateUserName">修改userName</button>
+    <button @click="promiseUpdateAppName">接口获取AppName</button>
+    <button @click="registerModule">注册vuex模块</button>
+    <p v-for="(item,index) in todoList" :key="index">{{ item }}</p>
 </div>
 </template>
 
@@ -18,7 +21,8 @@ import AShow from '_c/AShow.vue'
 import {
     mapState,
     mapGetters,
-    mapMutations
+    mapMutations,
+    mapActions,
 } from 'vuex'
 export default {
     name: 'store',
@@ -42,7 +46,8 @@ export default {
         ...mapState({
             appName: state => state.appName,
             userName: state => state.user.userName,
-            appVersion: state => state.appVersion
+            appVersion: state => state.appVersion,
+            todoList: state => state.todo ? state.todo.todoList : []
         }),
         ...mapGetters(['appNameWithVersion', 'userNameFirstLetter']),
         // ...mapGetters({
@@ -61,7 +66,8 @@ export default {
         handleValue(val) {
             this.inputValue = val;
         },
-        ...mapMutations(['SET_APP_NAME','SET_USER_NAME']),
+        ...mapMutations(['SET_APP_NAME', 'SET_USER_NAME']),
+        ...mapActions(['updateAppName']),
         //修改appName
         UpdateAppName() {
             // this.$store.commit('SET_APP_NAME','newAppName')
@@ -76,10 +82,35 @@ export default {
             //     type:'SET_APP_VERSION'
             // })
 
-            this.SET_APP_NAME({appName:'newAppName'})
+            this.SET_APP_NAME({
+                appName: 'newAppName'
+            })
         },
-        UpdateUserName(){
-            this.SET_USER_NAME({userName:"newUserName"})
+        UpdateUserName() {
+            this.SET_USER_NAME({
+                userName: "newUserName"
+            })
+        },
+        promiseUpdateAppName() {
+            // this.$store.dispatch('updateAppName','123')
+            this.updateAppName()
+        },
+        //注册模块
+        registerModule() {
+            // this.$store.registerModule(['user','todo'],{}) 在已有的模块下在注册模块
+            this.$store.registerModule('todo', {
+                state: {
+                    todoList: [
+                        '123',
+                        '456'
+                    ]
+                },
+                actions: {},
+                mutations: {
+
+                },
+                getters: {}
+            })
         }
     }
 }
