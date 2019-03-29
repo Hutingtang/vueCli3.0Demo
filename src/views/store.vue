@@ -2,6 +2,9 @@
 <div>
     <!-- <a-input v-model="inputValue" /> -->
     <a-input @input="handleValue" />
+    <!-- <input :value="stateValue" @input="changeStateValue"/> -->
+    <input type="text" v-model="stateValue" name="" id="">
+    <p>stateValue:{{ stateValue }}</p>
     <div>{{ inputValue }} -- last letter {{ inputValueLastLetter }}</div>
     <a-show :content='inputValue' />
     <p>appName:{{ appName }},appNameWithVersion:{{ appNameWithVersion }}</p>
@@ -47,8 +50,17 @@ export default {
             appName: state => state.appName,
             userName: state => state.user.userName,
             appVersion: state => state.appVersion,
-            todoList: state => state.todo ? state.todo.todoList : []
+            todoList: state => state.todo ? state.todo.todoList : [],
+            // stateValue: state => state.stateValue,
         }),
+        stateValue:{
+            get(){
+                return this.$store.state.stateValue
+            },
+            set(value){
+                this.SET_STATE_VALUE(value);
+            }
+        },
         ...mapGetters(['appNameWithVersion', 'userNameFirstLetter']),
         // ...mapGetters({
         //     appNameWiithVersion: getters =>{
@@ -66,7 +78,7 @@ export default {
         handleValue(val) {
             this.inputValue = val;
         },
-        ...mapMutations(['SET_APP_NAME', 'SET_USER_NAME']),
+        ...mapMutations(['SET_APP_NAME', 'SET_USER_NAME',"SET_STATE_VALUE"]),
         ...mapActions(['updateAppName']),
         //修改appName
         UpdateAppName() {
@@ -111,7 +123,12 @@ export default {
                 },
                 getters: {}
             })
-        }
+        },
+        //绑定input事件，实现state的双向绑定
+        // changeStateValue(val){
+        //     console.log(val.target.value)
+        //     this.SET_STATE_VALUE(val.target.value);
+        // }
     }
 }
 </script>
