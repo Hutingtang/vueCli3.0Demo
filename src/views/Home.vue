@@ -3,13 +3,14 @@
     <div>{{ food }}</div>
     <img alt="Vue logo" src="../assets/img/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <button @click="getInfo">请求getUserInfo接口</button>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import { getUserInfo } from '@/api/user'
 export default {
     name: 'home',
     props: {
@@ -40,6 +41,16 @@ export default {
         }
         else{
           next(false);//不离开此页面，跳转行为失败
+        }
+    },
+    methods:{
+        getInfo(){
+            // axios.post('/users/getUserInfo',{}).then(res =>{
+            //     console.log(res)
+            // })
+            getUserInfo().then(res =>{
+                console.log(res,"res")
+            })
         }
     }
 
