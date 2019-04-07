@@ -63,6 +63,12 @@ export default [
     name:'count-to',
     component: () => import('@/views/count-to.vue')
   },
+  //split-pane
+  {
+    path:'/split-pane',
+    name:'split_pane',
+    component: ()=> import('@/views/split-pane.vue')
+  },
   // ，命名视图
   {
     path: "/named_view",
