@@ -59,15 +59,21 @@ export default [
   },
   //count-to.vur
   {
-    path:'/count-to',
-    name:'count-to',
-    component: () => import('@/views/count-to.vue')
+    path: "/count-to",
+    name: "count-to",
+    component: () => import("@/views/count-to.vue")
   },
   //split-pane
   {
-    path:'/split-pane',
-    name:'split_pane',
-    component: ()=> import('@/views/split-pane.vue')
+    path: "/split-pane",
+    name: "split_pane",
+    component: () => import("@/views/split-pane.vue")
+  },
+  //render_page.vue
+  {
+    path: "/render_page",
+    name: "render_page",
+    component: () => import("@/views/render_page.vue")
   },
   // ，命名视图
   {
