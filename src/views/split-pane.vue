@@ -1,6 +1,9 @@
 <template>
 <div class="split-pane-con">
-    <split-pane :value.sync = 'offset'></split-pane>
+    <split-pane :value.sync = 'offset'>
+        <div slot="left">123123D</div>
+        <div slot="right">iihii</div>
+    </split-pane>
 </div>
 </template>
 

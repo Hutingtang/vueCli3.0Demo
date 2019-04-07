@@ -1,8 +1,12 @@
 <template>
 <div class="split-pane-wrap" ref="splitPaneWrap">
-    <div class="pane pane-left" :style="{width:leftOffsetPercent}"></div>
+    <div class="pane pane-left" :style="{width:leftOffsetPercent}">
+        <slot name="left"></slot>
+    </div>
     <div class="pane-trigger-con" @mousedown="handleMousedown" :style="{left:triggerLeft,width:`${triggerWith}px`}"></div>
-    <div class="pane pane-right" :style="{left:leftOffsetPercent}"></div>
+    <div class="pane pane-right" :style="{left:leftOffsetPercent, paddingLeft:`${triggerWith/2}px`}">
+        <slot name="right"></slot>
+    </div>
 </div>
 </template>
 
