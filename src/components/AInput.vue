@@ -1,10 +1,10 @@
 <template>
-<input @input="handleInput" :value="value"/>
+<input @input="handleInput" :value="value" placeholder="1231111"/>
 </template>
 
 <script>
 export default {
-    name:'AInput',
+    name: 'AInput',
     data() {
         return {}
     },
@@ -14,10 +14,10 @@ export default {
             default: ''
         }
     },
-    methods:{
-        handleInput(e){
-            const value =  e.target.value;
-            this.$emit("input",value);
+    methods: {
+        handleInput(e) {
+            const value = e.target.value;
+            this.$emit("input", value);
         }
     }
 }

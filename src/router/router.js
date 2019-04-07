@@ -1,5 +1,6 @@
 import Home from "@/views/Home.vue";
-export default [{
+export default [
+  {
     path: "/",
     name: "home",
     alias: "/home", //别名路由
@@ -8,21 +9,21 @@ export default [{
     props: route => {
       return {
         food: route.query.food
-      }
+      };
     },
     //路由独享的守卫
     //路由进入之前
     beforeEnter: (to, from, next) => {
-        // if(from.name == "login") alert("这是来自与登陆页")
-        // else alert('这不是来自于登陆页')
-        next();
+      // if(from.name == "login") alert("这是来自与登陆页")
+      // else alert('这不是来自于登陆页')
+      next();
     }
   },
   {
     // 登陆页
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/login.vue')
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login.vue")
   },
   {
     path: "/about",
@@ -36,7 +37,7 @@ export default [{
     props: {
       food: "abc"
     },
-    meta: { title:"About" }
+    meta: { title: "About" }
   },
   // 动态路由匹配
   {
@@ -49,10 +50,18 @@ export default [{
   {
     path: "/parent",
     component: () => import("@/views/parent.vue"),
-    children: [{
-      path: "child",
-      component: () => import("@/views/child.vue")
-    }]
+    children: [
+      {
+        path: "child",
+        component: () => import("@/views/child.vue")
+      }
+    ]
+  },
+  //count-to.vur
+  {
+    path:'/count-to',
+    name:'count-to',
+    component: () => import('@/views/count-to.vue')
   },
   // ，命名视图
   {
@@ -75,13 +84,13 @@ export default [{
     }
   },
   {
-    path:'/store',
-    name:'store',
-    component:() => import('@/views/store')
+    path: "/store",
+    name: "store",
+    component: () => import("@/views/store")
   },
   // 404
   {
-    path: '*',
-    component: () => import('@/views/error_page'),
+    path: "*",
+    component: () => import("@/views/error_page")
   }
 ];
