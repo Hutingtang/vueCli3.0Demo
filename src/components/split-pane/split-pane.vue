@@ -109,6 +109,7 @@ export default {
             top: 0;
             z-index: 10;
             user-select: none;
+            cursor:col-resize;
         }
     }
 }
