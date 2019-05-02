@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseURL } from '@/config'
+import { getToken } from './util';
 class HttpRequset {
     constructor (baseUrl = baseURL){
         this.baseUrl = baseUrl;
@@ -34,6 +35,10 @@ class HttpRequset {
             }
             // 每次请求，将请求地址放入队列中
             this.queue[url] = true;
+            
+
+            //给请求头部设置anthorization
+            config.header["Anthorization"] = getToken();
             return config
         },err =>{
             return Promise.reject(err)

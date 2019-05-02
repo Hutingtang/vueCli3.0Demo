@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
-import { setTitle } from '@/lib/util'
-
+import { setTitle, getToken } from '@/lib/util'
+import store from '@/store'
+import { setToken } from '../lib/util';
 Vue.use(Router)
 
 const router = new Router({
@@ -10,7 +11,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes
 })
-const HAS_LOGIN = true //模拟一个已登陆状态
+const HAS_LOGIN = false //模拟一个已登陆状态
 //注册一个全局前置守卫,跳转之前
 router.beforeEach((to, from, next) => {
   /*
@@ -19,23 +20,41 @@ router.beforeEach((to, from, next) => {
     next 确定跳转函数
   */
   to.meta && to.meta.title && setTitle(to.meta.title)
-  if (to.name !== 'login') {
-    if (HAS_LOGIN) {
-      next();
-    } else {
-      next({
-        name: 'login'
-      });
-    }
-  } else {
-    if (HAS_LOGIN) {
-      next({
-        name: "home"
-      })
-    } else {
-      next();
-    }
+  // if (to.name !== 'login') {
+  //   if (HAS_LOGIN) {
+  //     next();
+  //   } else {
+  //     next({
+  //       name: 'login'
+  //     });
+  //   }
+  // } else {
+  //   if (HAS_LOGIN) {
+  //     next({
+  //       name: "home"
+  //     })
+  //   } else {
+  //     next();
+  //   }
+  // }
+  const token = getToken();
+  if(token){
+    //有token时，先判断token是否是有效的
+    store.dispatch('anthorization',token).then(()=>{
+      if(to.name == 'login'){
+        next({name:"home"})
+      }else{
+        next();
+      }
+    }).catch((e)=>{
+      setToken('');
+      next({name:"login"})
+    })
+  }else{
+    // 没有token直接跳到登陆页面
+    next({name:"login"})
   }
+
 })
 // router.beforeResolve() 参数类似于 beforeEach 
 // 注册一个跳转之后的 后置钩子
