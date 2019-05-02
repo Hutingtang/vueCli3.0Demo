@@ -41,6 +41,7 @@ export default {
             )
         },
         handleClick(e){
+            
             console.log(e,"event")
         }
     }

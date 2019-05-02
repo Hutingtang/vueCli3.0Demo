@@ -1,6 +1,5 @@
 import Home from "@/views/Home.vue";
-export default [
-  {
+export default [{
     path: "/",
     name: "home",
     alias: "/home", //别名路由
@@ -37,7 +36,9 @@ export default [
     props: {
       food: "abc"
     },
-    meta: { title: "About" }
+    meta: {
+      title: "About"
+    }
   },
   // 动态路由匹配
   {
@@ -50,12 +51,10 @@ export default [
   {
     path: "/parent",
     component: () => import("@/views/parent.vue"),
-    children: [
-      {
-        path: "child",
-        component: () => import("@/views/child.vue")
-      }
-    ]
+    children: [{
+      path: "child",
+      component: () => import("@/views/child.vue")
+    }]
   },
   //count-to.vur
   {
@@ -74,6 +73,11 @@ export default [
     path: "/render_page",
     name: "render_page",
     component: () => import("@/views/render_page.vue")
+  },
+  {
+    path: '/menu_page',
+    name: 'menu_page',
+    component: () => import('@/views/menu_page.vue')
   },
   // ，命名视图
   {
