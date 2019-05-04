@@ -1,7 +1,5 @@
 import { login, checkToken} from "@/api/user";
 import { setToken, getToken } from "@/lib/util";
-import { resolve } from "url";
-import { reject } from "_@types_q@1.5.1@@types/q";
 // 与用户相关的vuex
 const state = {
   //

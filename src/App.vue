@@ -1,15 +1,15 @@
 <template>
 <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link :to="{name:'about'}">About</router-link>
         <button @click="backPage">返回上一页</button>
-    </div>
-    <transition-group name="router">
+    </div> -->
+    <!-- <transition-group name="router"> -->
         <router-view key="default"/>
-        <router-view name="email" key="email"></router-view>
-        <router-view name="tel" key="tel"></router-view>
-    </transition-group>
+        <!-- <router-view name="email" key="email"></router-view>
+        <router-view name="tel" key="tel"></router-view> -->
+    <!-- </transition-group> -->
 
 </div>
 </template>
@@ -51,6 +51,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     // text-align: center;
     color: #2c3e50;
+    height: 100%;
 }
 
 #nav {

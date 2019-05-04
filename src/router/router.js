@@ -1,5 +1,6 @@
 import Home from "@/views/Home.vue";
-export default [{
+export default [
+  {
     path: "/",
     name: "home",
     alias: "/home", //别名路由
@@ -51,10 +52,12 @@ export default [{
   {
     path: "/parent",
     component: () => import("@/views/parent.vue"),
-    children: [{
-      path: "child",
-      component: () => import("@/views/child.vue")
-    }]
+    children: [
+      {
+        path: "child",
+        component: () => import("@/views/child.vue")
+      }
+    ]
   },
   //count-to.vur
   {
@@ -75,9 +78,9 @@ export default [{
     component: () => import("@/views/render_page.vue")
   },
   {
-    path: '/menu_page',
-    name: 'menu_page',
-    component: () => import('@/views/menu_page.vue')
+    path: "/menu_page",
+    name: "menu_page",
+    component: () => import("@/views/menu_page.vue")
   },
   // ，命名视图
   {
@@ -88,6 +91,18 @@ export default [{
       email: () => import("@/views/email.vue"),
       tel: () => import("@/views/tel.vue")
     }
+  },
+  {
+    //layout
+    path: "/layout",
+    name: "layout",
+    component: () => import("@/views/layout.vue")
+  },
+  {
+    //大数优化页面
+    path:'/optimize',
+    name:'optimize',
+    component: () => import("@/views/optimize.vue")
   },
   // 重定向
   {
